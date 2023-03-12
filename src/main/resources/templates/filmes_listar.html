@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Filme</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        :root {
+            --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+        }
+
+        body {
+            background: #111 !important;
+        }
+
+
+        button {
+            border: 5px solid;
+            border-image-slice: 1;
+            background: var(--gradient) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            border-image-source:  var(--gradient) !important;
+            text-decoration: none;
+            transition: all .4s ease;
+
+        }
+
+        h1{
+            font-size: xxx-large;
+            font-family: "Calisto MT",serif;
+            text-align: center;
+            color: white;
+        }
+        body{
+
+            text-align: center;
+        }
+
+        a img:hover {
+            cursor: pointer;
+        }
+        i{
+            color: white;
+        }
+
+</style>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+</head>
+<body>
+<div class="container">
+<h1 >Listar Filmes</h1>
+<table class="table table-striped table-dark">
+    <thead >
+    <tr id="1">
+        <th scope="col">ID</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Imagem</th>
+        <th scope="col">Genero</th>
+        <th scope="col">Duração</th>
+        <th scope="col">Sinopse</th>
+        <th scope="col">Imdb</th>
+        <th scope="col">Like</th>
+        <th scope="col">Dislike</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="filme : ${filmes}">
+        <td th:text="${filme.id}"></td>
+        <td th:text="${filme.titulo}"></td>
+        <td><img style="max-width: 150px" th:src="${filme.imagem}" alt="filme"></td>
+        <td th:text="${filme.genero}"></td>
+        <td th:text="${filme.duracao}"></td>
+        <td th:text="${filme.sinopse}"></td>
+        <td th:text="${filme.imdb}"></td>
+
+        <td><a th:href="@{/filme/like/{id}(id=${filme.id})}"
+               class="card__link">
+            <i data-feather="thumbs-up"></i><p th:text="${filme.like}"></p></a></td>
+
+        <td><a th:href="@{/filme/dislike/{id}(id=${filme.id})}"
+               class="card__link"><i data-feather="thumbs-down"></i>
+            <p th:text="${filme.disLike}"></p></a></td>
+
+        <td><a th:href="@{/filme/editar/{id}(id=${filme.id})}">
+            <i data-feather="edit"></i> </a></td>
+        <td><a th:href="@{/filme/remover/{id}(id=${filme.id})}"
+               onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+            <i data-feather="trash-2"></i></a></td>
+    </tr>
+    </tbody>
+</table>
+    <button type="button" class="btn btn-dark"><a th:href="@{/filme/novo}">Adicionar novo Filme</a></button>
+    <button type="button" class="btn btn-dark"><a th:href="@{/home}">voltar pagina inicial</a></button>
+
+</div>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>

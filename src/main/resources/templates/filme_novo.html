@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Filme</title>
+    <style>
+        :root {
+            --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+        }
+
+        body {
+            background: #111 !important;
+        }
+
+
+        button {
+            border: 5px solid;
+            border-image-slice: 1;
+            background: var(--gradient) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            border-image-source:  var(--gradient) !important;
+            text-decoration: none;
+            transition: all .4s ease;
+
+        }
+
+
+        .container_form {
+
+            width: 700px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            background:#ffffff;
+            box-shadow: 1px 0px 1.2px 0px #e3e3e3;
+            border-radius:3px;
+            padding:1em;
+
+        }
+
+        .container_form h1 {
+
+            font-family:'open_sansregular',serif;
+            font-size: 2.3em;
+            color: #045668;
+            border-bottom: 1px #f0eded solid;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+
+        }
+
+        .form_grupo {
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form_grupo .legenda {
+
+            width: 100%;
+            float: left;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+
+
+
+        .form_grupo {
+
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+
+        }
+
+        .form_input {
+
+            font-size: 16px;
+            font-family: inherit;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 1px #f2f2f2 solid;
+            background: #fdfdfd;
+            outline: none;
+            width: 100%;
+            transition: all 0.3s;
+
+        }
+
+
+    </style>
+</head>
+<body >
+<div class="container_form">
+    <h1>Formulário de cadastro</h1>
+<form class="form" th:object="${filme}" method="post" th:action="@{/filme/novo}">
+    <div class="form_grupo">
+        <label for="titulo" class="form_label">Titulo</label>
+        <input type="text" name="titulo" class="form_input" id="titulo" placeholder="titulo" th:field="*{titulo}" required>
+    </div>
+
+    <div class="form_grupo">
+        <label for="genero" class="form_label">Genero:</label>
+        <input type="text" name="genero" class="form_input" id="genero" placeholder="genero" th:field="*{genero}" required>
+    </div>
+
+    <div class="form_grupo">
+        <label for="imagem" class="form_label">Imagem:</label>
+        <input type="text" name="imagem" class="form_input" id="imagem" placeholder="imagem" th:field="*{imagem}" required>
+    </div>
+
+    <div class="form_grupo">
+        <label for="sinopse" class="form_label">Sinopse:</label>
+        <input type="text" name="sinopse" class="form_input" id="sinopse" placeholder="sinopse" th:field="*{sinopse}" required>
+    </div>
+
+    <div class="form_grupo">
+        <label for="imdb" class="form_label">Imdb:</label>
+        <input type="text" name="imdb" class="form_input" id="imdb" placeholder="imdb" th:field="*{imdb}" required>
+    </div>
+
+    <div class="form_grupo">
+        <label for="duracao" class="form_label">Duração:</label>
+        <input type="text" name="duracao" class="form_input" id="duracao" placeholder="duracao" th:field="*{duracao}" required>
+    </div>
+
+
+    <button type="submit"> Salvar </button>
+    <a href="@{/filme}"><button> Cancelar </button></a>
+
+</form>
+</div>
+</div>
+</body>
+</html>
